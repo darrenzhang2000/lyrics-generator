@@ -1,6 +1,5 @@
 import configparser
 import requests
-from bs4 import BeautifulSoup
 
 def getAccessToken():
     config = configparser.ConfigParser()
@@ -39,21 +38,6 @@ def getLyricsArray(name):
         lyrics_array.append(song["url"])
     return lyrics_array
 
-def webScrapeLyrics(name):
-    arr = getLyricsArray("Kendrick Lamar")
-    songs_lyrics = []
-    for url in arr:
-        page = requests.get(url)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        lyrics_div = soup.find(class_="lyrics")
-        lyrics_links = lyrics_div.find_all('a')
-        current_lyrics = []
-        for link in lyrics_links:
-            if len(link.text) > 0 and link.text[0] != "[":
-                text = link.text.replace("\n", " ")
-                current_lyrics.append(text)
-        songs_lyrics.append(current_lyrics)
-    return songs_lyrics
-print(webScrapeLyrics("Kendrick Lamar"))
+print(getLyricsArray("Kendrick Lamar"))
 
 
