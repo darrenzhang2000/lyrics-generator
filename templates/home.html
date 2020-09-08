@@ -8,9 +8,10 @@
 <body>
     <h1>Welcome to Lyrics Generator!</h1>
     <p>Here, you can generate lyrics by the artist of your choice!</p>
-    <form>
+    <form action="{{ url_for('lyricsGenerator') }}" method="post">
         <input type="text" id="search" name="search" placeholder="Search for an artist...">
         <input type="submit" value="Generate Lyrics">
     </form>
+    <p>{{song}}</p>
 </body>
 </html>
