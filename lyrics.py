@@ -54,6 +54,5 @@ def webScrapeLyrics(name):
                 current_lyrics.append(text)
         songs_lyrics.append(current_lyrics)
     return songs_lyrics
-print(webScrapeLyrics("Kendrick Lamar"))
 
 
