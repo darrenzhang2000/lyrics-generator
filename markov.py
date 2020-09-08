@@ -33,31 +33,27 @@ class MarkovLyrics:
 
     # length is the length so the song we generate
     def generateLyrics(self, length=500):
-        n = len(m.chain)
+            n = len(self.chain)
+    
+            # Choose a random starting word
+            start_index = randint(0, n - 1)
+            keys = list(self.chain.keys())
+            cur_word = keys[start_index]
+    
+            # result string
+            res = cur_word + " "
+    
+            for _ in range(length):
+                if cur_word not in self.chain:
+                    res += '\n'
+                    next_index = randint(0, len(self.chain) - 1)
+                    l = list(self.chain)
+                    cur_word = l[next_index]
+                else:
+                    possible_words = self.chain[cur_word]
+                    index = randint(0, len(possible_words) - 1)
+                    next_word = possible_words[index]
+                    res += next_word + ' '
+                    cur_word = next_word
+            return res
 
-        # Choose a random starting word
-        start_index = randint(0, n - 1)
-        keys = list(m.chain.keys())
-        cur_word = keys[start_index]
-
-        # result string
-        res = cur_word + " "
-
-        for _ in range(length):
-            if cur_word not in m.chain:
-                res += '\n'
-                next_index = randint(0, len(m.chain) - 1)
-                l = list(m.chain)
-                cur_word = l[next_index]
-            else:
-                possible_words = m.chain[cur_word]
-                index = randint(0, len(possible_words) - 1)
-                next_word = possible_words[index]
-                res += next_word + ' '
-                cur_word = next_word
-        return res
-
-data = ["cow dog bunny dog cow horse", "dog cat dog cat"]
-m = MarkovLyrics()
-m.populateMarkovChain(data)
-print(m.generateLyrics())
