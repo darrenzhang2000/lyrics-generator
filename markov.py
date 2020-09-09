@@ -39,7 +39,8 @@ class MarkovLyrics:
         start_index = randint(0, n - 1)
         keys = list(self.chain.keys())
         cur_word = keys[start_index]
-
+        # capitalize first character
+        cur_word = cur_word[0].upper() + cur_word[1:]
         # result string
         res = cur_word + " "
 

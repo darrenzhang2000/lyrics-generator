@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/home.css') }}">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Welcome to Lyrics Generator!</h1>
-    <p>Here, you can generate lyrics by the artist of your choice!</p>
-    <form action="{{ url_for('lyricsGenerator') }}" method="post">
+    <h6>Here, you can generate lyrics by the artist of your choice!</h6>
+    <form action="{{ url_for('lyricsGenerator') }}" method="post" id="form">
         <input type="text" id="search" name="search" placeholder="Search for an artist...">
-        <input type="submit" value="Generate Lyrics">
+        <input type="submit" value="Generate Lyrics" id="submit">
     </form>
-    {% for line in lines %}
+    <div id="lyrics">
+        {% for line in lines %}
         <p>{{line}}</p>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </body>
+
 </html>
