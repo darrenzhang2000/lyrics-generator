@@ -50,10 +50,7 @@ def webScrapeLyrics(name):
         current_lyrics = []
         for link in lyrics_links:
             if len(link.text) > 0 and link.text[0] != "[":
-                # text = link.text.replace("\n", " NEWLINE ")
-                text = link.text.replace("\n", " ")
+                text = link.text.replace("\n", " NEWLINE ")
                 current_lyrics.append(text)
         songs_lyrics.append(current_lyrics)
     return songs_lyrics
-
-

@@ -13,18 +13,20 @@ def generateArtistSong(name):
     for song in songs_array:
         # Recall that each song contains an array of lyrics
         m.populateMarkovChain(song)
-    return m.generateLyrics()
+
+    song = m.generateLyrics()
+    lines = song.split("NEWLINE")
+
+    return lines
 
 # Our home route
 @app.route('/', methods = ['GET', 'POST'])
 def lyricsGenerator():
-    song = ""
+    lines = []
     if request.method == 'POST':
         artist = request.form['search']
-        song = generateArtistSong(artist)
-    return render_template('home.html', song=song)
-
-
+        lines = generateArtistSong(artist)
+    return render_template('home.html', lines=lines)
 
 if __name__ == '__main__':
     app.run()

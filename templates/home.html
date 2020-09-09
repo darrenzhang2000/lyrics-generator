@@ -12,6 +12,8 @@
         <input type="text" id="search" name="search" placeholder="Search for an artist...">
         <input type="submit" value="Generate Lyrics">
     </form>
-    <p>{{song}}</p>
+    {% for line in lines %}
+        <p>{{line}}</p>
+    {% endfor %}
 </body>
 </html>
