@@ -5,6 +5,8 @@
 Darren Zhang - September 9, 2020
 
 Here is what the final product looks like:
+![image](https://user-images.githubusercontent.com/44158788/92673159-748db580-f2e8-11ea-9daf-7e436ce0a576.png)
+
 
 Here’s what you’ll learn:
 * Use the Requests module in Python
@@ -29,69 +31,55 @@ We can use the search resource, as shown in the docs, to search for specific art
 The q is a query parameter, which are extensions of the URL that are used to help define specific content. Since we are querying for music artists, we just set q to whatever music artist we want to search. We can use the “sort” query parameter to 
 Let’s test out this example in Postman: 
 
+![image](https://user-images.githubusercontent.com/44158788/92673197-8ff8c080-f2e8-11ea-9f30-2ea6e87e57fa.png)
+
+
 Note that %20 is the encoded representation of a space. The string after Bearer is the Client Access Token which we obtained from our API Client.
 
 Here is the result returned: 
 
-
+![image](https://user-images.githubusercontent.com/44158788/92673217-98e99200-f2e8-11ea-9df6-ff244dab2b63.png)
 
 
 Here are the results from the docs itself:
 As you can see, hits is an array which contains the top ten songs for the specified artist. Inside each “hit” object, there is a “result” object which contains details about the songs. 
 
+![image](https://user-images.githubusercontent.com/44158788/92673232-a0a93680-f2e8-11ea-9f41-0be7b3d75774.png)
 
-
-
-
-
+![image](https://user-images.githubusercontent.com/44158788/92673240-a6068100-f2e8-11ea-98b9-ee758f9c8191.png)
 
 
 Nested inside “results” is the “primary_artist” object.
+![image](https://user-images.githubusercontent.com/44158788/92673269-b9b1e780-f2e8-11ea-9605-93769c347d74.png)
+
 
 Perfect! Now that we’ve identified the artist’s id, we can use that to get the top ten songs by that artist. We will use GET /artists/:id/songs :[https://docs.genius.com/#artists-h2](https://docs.genius.com/#artists-h2)
 
+
+![image](https://user-images.githubusercontent.com/44158788/92673274-c0405f00-f2e8-11ea-88de-ad5055ce7256.png)
 
 Notice that by default, the api returns 20 songs sorted by title. Let’s modify this so that we get the top 10 most popular songs.
 
 
 
-
-
-
-
-
-
-
 In Postman, enter the following (also make sure that you have the authorization token in the header like in previous examples):
-
+![image](https://user-images.githubusercontent.com/44158788/92673292-ca625d80-f2e8-11ea-89df-b4be4fafa785.png)
 
 Notice that by entering the key value pairs in the form, Postman automatically appends these values to the url. This is the response that we get: 
-
-
-
+![image](https://user-images.githubusercontent.com/44158788/92673297-ce8e7b00-f2e8-11ea-8dc1-a5889e2c3c3c.png)
 
 
 If we click on one of the songs and navigate towards the bottom, we get the following: 
-
-
-
-
-
-
-
+![image](https://user-images.githubusercontent.com/44158788/92673309-d4845c00-f2e8-11ea-9806-58e19208d316.png)
 
 If we open that url into a browser, we get the actual lyrics of the song:
+![image](https://user-images.githubusercontent.com/44158788/92673319-d9491000-f2e8-11ea-86dc-df9886d8af5b.png)
+
 
 Great! This is exactly what we want. 
 
 
-
-
-
-
-
-
-Let’s recap our workflow:
+#### Let’s recap our workflow:
 Search for a music artist by sending an API request to api.genius.com/artists.
 Note that we need to pass in the authorization bearer as part of the headers.
 q is the query parameter where we input our music artist’s name.
@@ -105,11 +93,15 @@ For each of these songs, retrieve the url to the lyrics link and store these in 
 The nesting is as follows: response -> songs array -> url
 Get a music artist’s top ten songs lyrics: 
 Part 2 (Code)
+![image](https://user-images.githubusercontent.com/44158788/92673332-de0dc400-f2e8-11ea-9be4-171670e181b4.png)
+
 
 Now that we have the workflow, let’s code this up. Create a dictionary called lyrics-generator or whatever name of your choice. Inside this directory, create 3 files, app.py, lyrics.py and config.ini. 
 
 
 Config.ini is a file where you store configurations, some of which you may not want to publicly reveal. If you were to push code on Github for instance, it would be a good idea to keep sensitive configurations hidden. In that case, create a .gitignore file and config.ini in that file.
+![image](https://user-images.githubusercontent.com/44158788/92673342-e2d27800-f2e8-11ea-8464-a8ec42394f44.png)
+
 
 
 Optional: Here is an article on why you should hide your API keys: [https://www.freecodecamp.org/news/how-to-securely-store-api-keys-4ff3ea19ebda/](https://www.freecodecamp.org/news/how-to-securely-store-api-keys-4ff3ea19ebda/)
@@ -143,6 +135,8 @@ print(searchMusicArtist("Kendrick Lamar"))
 ```
 
 Here is the output from the terminal:
+![image](https://user-images.githubusercontent.com/44158788/92674034-7fe1e080-f2ea-11ea-9b12-eef9e2f6ea50.png)
+
 
 Uh … not exactly what we want. A quick google search suggests that this is because the request has not been applied because it lacks authentication credentials. To fix this, we need to pass in our API access token as part of our headers. 
 
@@ -156,6 +150,8 @@ def searchMusicArtist(name):
  
 print(searchMusicArtist("Kendrick Lamar"))
 ```
+![image](https://user-images.githubusercontent.com/44158788/92674045-853f2b00-f2ea-11ea-9022-e531a3cede6c.png)
+
 
 Great! We got a success message.
 
@@ -163,6 +159,7 @@ Let’s view the results:
 ```
 print(searchMusicArtist("Kendrick Lamar")["response"])
 ```
+![image](https://user-images.githubusercontent.com/44158788/92674072-95efa100-f2ea-11ea-9fac-c6dd78084e09.png)
 
 
 
@@ -244,11 +241,15 @@ print(getLyricsArray("Kendrick Lamar"))
 ```
 
 This will give us a list containing song objects: 
+![image](https://user-images.githubusercontent.com/44158788/92674096-a0aa3600-f2ea-11ea-8956-3c3e52930174.png)
+
+
 
 Here is what a song object inside the song array looks like:
-
+![image](https://user-images.githubusercontent.com/44158788/92674399-3ba31000-f2eb-11ea-8d65-f33b4f964915.png)
 
 We want to store this url in an array. Let’s loop through each of the song objects and do just that. 
+![image](https://user-images.githubusercontent.com/44158788/92674417-42ca1e00-f2eb-11ea-9664-20292b8c637a.png)
 
 ```
 def getLyricsArray(name):
@@ -261,7 +262,7 @@ def getLyricsArray(name):
  
 print(getLyricsArray("Kendrick Lamar"))
 ```
-
+![image](https://user-images.githubusercontent.com/44158788/92674435-49589580-f2eb-11ea-9078-af614b9a2b53.png)
 
 And we’re done!!
 The code up to this point can be found in branch1 of my github repo: [https://github.com/darrenzhang2000/lyrics-generator/blob/branch1/lyrics.py](https://github.com/darrenzhang2000/lyrics-generator/blob/branch1/lyrics.py)
@@ -280,10 +281,12 @@ def webScrapeLyrics(name):
  
 webScrapeLyrics("Kendrick Lamar")
 ```
+![image](https://user-images.githubusercontent.com/44158788/92674444-4fe70d00-f2eb-11ea-8635-94b34b265f3d.png)
 
 
 If we open any of these urls and inspect the html page, we’ll see that all of the lyrics are inside a class called lyrics.
 
+![image](https://user-images.githubusercontent.com/44158788/92674462-5a090b80-f2eb-11ea-8c9e-fec63670dd4c.png)
 
 Let’s get hold of this class by using Beautiful Soup. If you don’t have Beautiful Soup installed, then run in your terminal: pip install beautifulsoup4
 
@@ -314,7 +317,7 @@ webScrapeLyrics("Kendrick Lamar")
 ```
 
 The actual lyrics text is contained within “a” tags. For each of these “a” tags, we can access the text inside it by using .text .
-
+![image](https://user-images.githubusercontent.com/44158788/92674470-5f665600-f2eb-11ea-9082-4e7708204ccd.png)
 
 ```
 def webScrapeLyrics(name):
@@ -329,8 +332,12 @@ def webScrapeLyrics(name):
  
 webScrapeLyrics("Kendrick Lamar")
 ```
+![image](https://user-images.githubusercontent.com/44158788/92674477-655c3700-f2eb-11ea-9cbd-67c659c43dcb.png)
 
 Very close! However, notice that if the text encased by brackets is not part of the lyrics. We can use an if statement to exclude these.
+
+![image](https://user-images.githubusercontent.com/44158788/92674493-7016cc00-f2eb-11ea-8bcf-f8eba286e871.png)
+
 Addition to that, let’s create an array called songs_lyrics, to contain the lyrics of these 10 songs. Each element inside songs_lyrics is an array containing the lines for each song.
 ```
 def webScrapeLyrics(name):
@@ -351,7 +358,7 @@ print(webScrapeLyrics("Kendrick Lamar"))
 ```
 
 If we run this, however, there is a small problem - newlines are encoded as ‘\n ’. Let's just replace it with a space. 
-
+![image](https://user-images.githubusercontent.com/44158788/92674503-7ad16100-f2eb-11ea-9745-66558e177bf5.png)
 ```
 def webScrapeLyrics(name):
     arr = getLyricsArray("Kendrick Lamar")
@@ -427,7 +434,7 @@ print(m.chain)
 ```
 
 And the result:
-
+![image](https://user-images.githubusercontent.com/44158788/92674514-80c74200-f2eb-11ea-8e59-cfb13fa1fb19.png)
 
 Now that we have the chain,  let’s use it to generate lyrics. Start by choosing a random word from the list of keys.
 ```
@@ -500,15 +507,9 @@ Note that for simplicity, our current word only depends on the previous word. If
 
 
 
-
-Creating a Flask Website
-
-
-
-
 Using the Markov Lyrics Class in Our Flask App
 Now that we’re done creating this class, let’s use it in our project. Let’s begin by creating our Flask website. Create a dictionary called templates and a home.html file in that directory. 
-
+![image](https://user-images.githubusercontent.com/44158788/92674528-8886e680-f2eb-11ea-9811-39b64c1e1ed7.png)
 
 Generate the html boilerplate in your home.html and the basic layout for our page:
 ```
