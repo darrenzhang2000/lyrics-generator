@@ -19,8 +19,8 @@ Here’s what you’ll learn:
 
 Feel free to checkout my code on GitHub at any point during this tutorial. https://github.com/darrenzhang2000/lyrics-generator
 
-Get a music artist’s top ten songs lyrics: 
-Part 1 (Workflow)
+### Get a music artist’s top ten songs lyrics: 
+### Part 1 (Workflow)
 In this section, we will be using the genius api to get a music artist’s top 10 songs. Because we will need to make multiple API calls to get the results that we want, I’ve divided this task into two sections. Part 1 is workflow for this task and part 2 is the code for this task.
 
 Our first step is to create an API client, which is your unique identifier that can be used to make API calls. Follow the instructions here to create your API Client: [https://docs.genius.com/#/getting-started-h1](https://docs.genius.com/#/getting-started-h1)
@@ -91,8 +91,8 @@ The possible query parameters are id, sort, per_page, and page.
 https://docs.genius.com/#artists-h2  
 For each of these songs, retrieve the url to the lyrics link and store these in an array.
 The nesting is as follows: response -> songs array -> url
-Get a music artist’s top ten songs lyrics: 
-Part 2 (Code)
+### Get a music artist’s top ten songs lyrics: 
+### Part 2 (Code)
 ![image](https://user-images.githubusercontent.com/44158788/92673332-de0dc400-f2e8-11ea-9be4-171670e181b4.png)
 
 
@@ -118,7 +118,7 @@ token = getAccessToken()
 print(token)
 ```
 
-Let’s follow step 1 of our workflow: 
+#### Let’s follow step 1 of our workflow: 
 Search for a music artist by sending an API request to api.genius.com/artists.
 
 Import the requests library by running in your terminal:  pip install requests.
@@ -162,9 +162,7 @@ print(searchMusicArtist("Kendrick Lamar")["response"])
 ![image](https://user-images.githubusercontent.com/44158788/92674072-95efa100-f2ea-11ea-9fac-c6dd78084e09.png)
 
 
-
-
-Onto step 2! 
+#### Onto step 2! 
 Get the music artist’s ID using the response obtained from step 1.
 The nesting is as follows: response -> hits[0] -> result -> primary_arist -> id
 
@@ -182,14 +180,9 @@ Notice that we called the searchMusicArtist function we created earlier.
 
 Challenge: do steps 3 and 4 yourself. 
 
-
-
-
-
-
 Answers:
 
-Step 3: 
+#### Step 3: 
 Get the top ten songs by the artist using the id obtained from step 2.
 The possible query parameters are id, sort, per_page, and page.
 GET /artists/:id/songs
@@ -226,8 +219,8 @@ print(getTopTenSongs("Kendrick Lamar")["response"])
 
 Passing in params is quite similar to passing in headers. Alternatively, we could have also used string formatting to pass the params to the api url. 
 
-Onto the last step for this section. 
-Step 4: 
+#### Onto the last step for this section. 
+#### Step 4: 
 For each of these songs, retrieve the url to the lyrics link and store these in an array.
 The nesting is as follows: response -> songs array -> url
 
@@ -269,7 +262,7 @@ The code up to this point can be found in branch1 of my github repo: [https://gi
 
 
 
-Web scape song lyrics
+### Web scrape song lyrics
 In this section, we will use Beautiful Soup to web scrape the lyrics from each of the urls in the lyrics array. 
 
 Begin by looping through the lyrics array and printing out the urls.
@@ -379,12 +372,12 @@ print(webScrapeLyrics("Kendrick Lamar"))
 That’s it for this section. The code up to this point can be found in branch2 of my github repo: https://github.com/darrenzhang2000/lyrics-generator/blob/branch2/lyrics.py
 
 
-A Brief Introduction to Markov Chains
+### A Brief Introduction to Markov Chains
 Markov chains are mathematical systems that hop from one "state" (a situation or set of values) to another. For example, if you made a Markov chain model of a baby's behavior, you might include "playing," "eating", "sleeping," and "crying" as states. If a baby’s current state is “playing”, the next possible states would be (continue) “playing”, “eating”, “sleeping” and “crying”. Suppose the baby decides to sleep. Then the next possible states would be to either wake up or continue sleeping. Feel free to check out this article on Markov Chains: https://setosa.io/ev/markov-chains/
 
 For this project, we will be using Markov Chains to find the next possible words for a given word. 
 
-Creating the Markov Chain Class
+### Creating the Markov Chain Class
 Start by creating a file called markov.py. Create a class called MarkovLyrics with the chain initialized as an empty dictionary. Create the constructor as follows:
 ```
 class MarkovLyrics:
@@ -506,7 +499,7 @@ Note that for simplicity, our current word only depends on the previous word. If
 
 
 
-Using the Markov Lyrics Class in Our Flask App
+### Using the Markov Lyrics Class in Our Flask App
 Now that we’re done creating this class, let’s use it in our project. Let’s begin by creating our Flask website. Create a dictionary called templates and a home.html file in that directory. 
 ![image](https://user-images.githubusercontent.com/44158788/92674528-8886e680-f2eb-11ea-9811-39b64c1e1ed7.png)
 
@@ -746,7 +739,7 @@ Lastly, in home.html, we want to loop through the list of lines and display each
 
 
 The code for this section can be found in branch5: https://github.com/darrenzhang2000/lyrics-generator/tree/branch5
-Styling
+### Styling
 To conclude this tutorial, let’s add some styling. 
 Create a static folder and in it, create a styles folder. Inside the styles folder, create home.css.
 
@@ -817,5 +810,5 @@ p {
 Here is the final code:
 https://github.com/darrenzhang2000/lyrics-generator
 
-Conclusion:
+### Conclusion:
 And there you have it! I hope you enjoyed this tutorial. If you enjoyed it, please leave a star on my GitHub project. :)
