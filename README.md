@@ -336,8 +336,6 @@ webScrapeLyrics("Kendrick Lamar")
 
 Very close! However, notice that if the text encased by brackets is not part of the lyrics. We can use an if statement to exclude these.
 
-![image](https://user-images.githubusercontent.com/44158788/92674493-7016cc00-f2eb-11ea-8bcf-f8eba286e871.png)
-
 Addition to that, let’s create an array called songs_lyrics, to contain the lyrics of these 10 songs. Each element inside songs_lyrics is an array containing the lines for each song.
 ```
 def webScrapeLyrics(name):
@@ -434,7 +432,8 @@ print(m.chain)
 ```
 
 And the result:
-![image](https://user-images.githubusercontent.com/44158788/92674514-80c74200-f2eb-11ea-8e59-cfb13fa1fb19.png)
+![image](https://user-images.githubusercontent.com/44158788/92674493-7016cc00-f2eb-11ea-8bcf-f8eba286e871.png)
+
 
 Now that we have the chain,  let’s use it to generate lyrics. Start by choosing a random word from the list of keys.
 ```
@@ -549,7 +548,7 @@ if __name__ == '__main__':
 ```
 
 Run python app.py in your terminal and click on the url. 
-
+![image](https://user-images.githubusercontent.com/44158788/92674514-80c74200-f2eb-11ea-8e59-cfb13fa1fb19.png)
 
 
 
