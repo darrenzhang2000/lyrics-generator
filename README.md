@@ -521,8 +521,6 @@ Note that for simplicity, our current word only depends on the previous word. If
 ### Using the Markov Lyrics Class in Our Flask App
 Now that we’re done creating this class, let’s use it in our project. Let’s begin by creating our Flask website. Create a dictionary called templates and a home.html file in that directory. 
 
-![image](https://user-images.githubusercontent.com/44158788/92674528-8886e680-f2eb-11ea-9811-39b64c1e1ed7.png)
-
 Generate the html boilerplate in your home.html and the basic layout for our page:
 ```
 <!DOCTYPE html>
@@ -564,7 +562,7 @@ Run python app.py in your terminal and click on the url.
 
 ![image](https://user-images.githubusercontent.com/44158788/92674514-80c74200-f2eb-11ea-8e59-cfb13fa1fb19.png)
 
-
+![image](https://user-images.githubusercontent.com/44158788/92674528-8886e680-f2eb-11ea-9811-39b64c1e1ed7.png)
 
 
 Import the MarkovLyrics class and test it using our dummy data to make sure everything is working:
@@ -592,6 +590,7 @@ if __name__ == '__main__':
 
 Run the app, click on the url and you should get the following:
 
+![image](https://user-images.githubusercontent.com/44158788/92676445-8d4d9980-f2ef-11ea-8be4-b9adfacbba21.png)
 
 
 Now, let’s import the webScrapeLyrics function in lyrics.py. (Also be sure to delete any print statements we used for testing earlier). 
@@ -619,7 +618,7 @@ def lyricsGenerator():
 if __name__ == '__main__':
     app.run()
 ```
-
+![image](https://user-images.githubusercontent.com/44158788/92676509-afdfb280-f2ef-11ea-80a4-86dda14b4bc2.png)
 
 A few things to work on here. First, let’s move all of this code into a function called generateArtistSong.
 
@@ -695,6 +694,7 @@ In home.html, we want to display this song, so let’s put it in a paragraph:
 ```
 If we search for a random artist, we get the following: 
 
+![image](https://user-images.githubusercontent.com/44158788/92676541-c38b1900-f2ef-11ea-8a2c-af2bc5feec22.png)
 
 Getting close! The branch up to this point can be found in branch 4: https://github.com/darrenzhang2000/lyrics-generator/tree/branch4
 
@@ -757,7 +757,7 @@ Lastly, in home.html, we want to loop through the list of lines and display each
     {% endfor %}
 </body>
 ```
-
+![image](https://user-images.githubusercontent.com/44158788/92676613-f2a18a80-f2ef-11ea-9412-dff254cd30fd.png)
 
 The code for this section can be found in branch5: https://github.com/darrenzhang2000/lyrics-generator/tree/branch5
 ### Styling
